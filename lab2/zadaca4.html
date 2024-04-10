@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complex Numbers</title>
+    <style>
+        div {
+            margin: 5px;
+            font-style: italic;
+        }
+        input {
+            width: 50px;
+        }
+        #add {
+            width: 120px;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        function addComplex() {
+            let realParts = document.getElementsByClassName("real")
+            let imagParts = document.getElementsByClassName("imag")
+            let real = 0, imag = 0;
+            for(let i=0; i<realParts.length; i++) {
+                if(isNaN(parseInt(realParts[i].value)) || isNaN(parseInt(imagParts[i].value))) {
+                    alert("Invalid input!")
+                    return;
+                }
+                real += parseInt(realParts[i].value)
+                imag += parseInt(imagParts[i].value)
+            }
+
+            document.getElementById("resultReal").value = real
+            document.getElementById("resultImag").value = imag
+        }
+    </script>
+</head>
+<body>
+    <div><input type="text" class="real"> <input type="text" class="imag"> i</div>
+    <div><input type="text" class="real"> <input type="text" class="imag"> i</div>
+    <div><input type="button" value="Add" id="add" onclick="addComplex()"></div>
+    <div><input type="text" id="resultReal"> <input type="text" id="resultImag"> i</div>
+</body>
+</html>

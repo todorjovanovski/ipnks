@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colored Blocks Animation</title>
+    <style>
+        section {
+            margin-bottom: 10px;
+        }
+        div {
+            position: absolute;
+            left: -150px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <button onclick="slideLeft()">Slide Left <</button>
+        <button onclick="slideRight()">> Slide right</button>
+    </section>
+    <div style="height: 150px; width: 150px; background: indianred"></div>
+    <div style="height: 150px; width: 80px; background: mediumseagreen"></div>
+    <div style="height: 80px; width: 150px; background: lightskyblue"></div>
+    <script>
+        let blocks = document.getElementsByTagName("div")
+        let currI = 0
+        blocks[currI].style.left = "9px"
+        function slideLeft() {
+            let moveLeft = setInterval(left, 1, -150)
+            function left(width) {
+                let pos = Number(blocks[currI].style.left.split("px")[0])
+                blocks[currI].style.left = (pos - 3) + "px"
+                if(width === 10 && pos < 10) {
+                    clearInterval(moveLeft)
+                    return
+                }
+                if(pos < width) {
+                    clearInterval(moveLeft)
+                    if(++currI > blocks.length - 1) currI = 0
+                    blocks[currI].style.left = window.innerWidth + "px"
+                    moveLeft = setInterval(left, 1, 10)
+                }
+            }
+        }
+        function slideRight() {
+            let moveRight = setInterval(right, 1, window.innerWidth)
+            function right(width) {
+                let pos = Number(blocks[currI].style.left.split("px")[0])
+                console.log(pos)
+                blocks[currI].style.left = (pos + 3) + "px"
+                if(width === 8 && pos > 8) {
+                    clearInterval(moveRight)
+                    return
+                }
+                if(pos > width) {
+                    clearInterval(moveRight)
+                    if(--currI < 0) currI = blocks.length - 1
+                    blocks[currI].style.left = "-150px"
+                    moveRight = setInterval(right, 1, 8)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

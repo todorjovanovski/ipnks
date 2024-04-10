@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add colored text</title>
+    <style>
+        div {
+            margin: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 45px;
+        }
+        .pos, #buttons{
+            margin-left: 45px;
+        }
+    </style>
+    <script>
+        function addText() {
+            let text = document.getElementById("text")
+            let radios = document.getElementsByClassName("pos")
+
+            let red = document.getElementById("red").value
+            let green = document.getElementById("green").value
+            let blue = document.getElementById("blue").value
+
+            let newText = document.getElementById("added")
+            let newElement = "<p style='color: rgb(" + red + ", " + green + ", " + blue +")'>" + text.value + "</p>"
+            if(radios[0].checked) {
+                newText.insertAdjacentHTML("afterbegin", newElement)
+            } else {
+                newText.innerHTML += newElement
+            }
+            text.value = ""
+        }
+        function deleteText() {
+            let newText = document.getElementById("added")
+            let radios = document.getElementsByClassName("pos")
+            if(radios[0].checked) newText.removeChild(newText.firstChild)
+            else newText.removeChild(newText.lastChild)
+        }
+    </script>
+</head>
+<body>
+    <div><label for="red">Red</label><input type="number" id="red"> (0-255)</div>
+    <div><label for="green">Green</label><input type="number" id="green"> (0-255)</div>
+    <div><label for="blue">Blue</label><input type="number" id="blue"> (0-255)</div>
+    <div>
+        <input class="pos" type="radio" name="pos" id="start"><label for="start">Start</label>
+        <br>
+        <input class="pos" type="radio" name="pos" id="end"><label for="end">End</label>
+    </div>
+    <div><label for="text">Text: </label><input type="text" id="text"></div>
+    <div>
+        <section id="buttons"><button onclick="addText()">Add</button> <button onclick="deleteText()">Delete</button></section>
+    </div>
+    <div id="added">
+
+    </div>
+</body>
+</html>

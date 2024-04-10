@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Phone</title>
+    <script type="text/javascript">
+        var x = prompt("Vnesi mobilen broj:");
+        var y = parseInt(x);
+        if(!isNaN(y)) {
+            if(y<10000000 || y>99999999) document.write("Vneseniot mobilen broj ne e validen!");
+            else {
+                var op = Math.floor((y/1000000)%10);
+                var str = "0";
+                for(var i=0; i<8; i++) {
+                    str += x[i];
+                    if(i === 1) str += "/"
+                    else if (i === 4) str += "-"
+                }
+                str += " - ";
+                if(op === 0 || op === 1 || op === 2) str += "T-Mobile"
+                else if(op === 5 || op === 6) str += "One"
+                else if(op === 7 || op === 8) str += "Vip"
+                document.write(str);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

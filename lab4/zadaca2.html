@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item type</title>
+    <style>
+        #form label {
+            display: inline-block;
+            width: 40px;
+            text-align: right;
+            padding: 5px;
+        }
+        #form div {
+            margin-bottom: 5px;
+            width: 260px;
+            text-align: right;
+        }
+        #buttons {
+            margin-top: 10px;
+            width: 260px;
+            text-align: right;
+        }
+        #form input {
+            width: 180px;
+        }
+        select {
+            background: #e1e1e1;
+            width: 186px;
+            margin-left: -3px;
+        }
+    </style>
+    <script>
+        function addButtons() {
+            let buttonsDiv = document.getElementById("buttons")
+            buttonsDiv.innerHTML = ""
+            let stringParts = document.getElementById("items").value
+            let itemArray = stringParts.split(",")
+            let buttonType = document.getElementById("type").value
+            if(buttonType === "Radio button")
+                buttonType = "radio"
+            else
+                buttonType = "checkbox"
+
+            for(let i=0; i<itemArray.length; i++) {
+                buttonsDiv.innerHTML +=
+                "<label>" + itemArray[i] + "</label>" +
+                "<input type='" + buttonType + "' name ='" + itemArray[0] + "'</input>"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="form">
+        <div><label for="items">Items:</label><input type="text" id="items"></div>
+        <div><label for="type">Type:</label>
+            <select id="type">
+                <option>Radio button</option>
+                <option>Check box</option>
+            </select>
+        </div>
+        <div><button id="add" onclick="addButtons()">Прикажи</button></div>
+    </div>
+    <div id="buttons">
+
+    </div>
+</body>
+</html>

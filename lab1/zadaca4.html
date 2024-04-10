@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiply</title>
+    <script type="text/javascript">
+        var nums = prompt("Vnesi tri broja:")
+        var arr = nums.split(/[, ]+/);
+        if(arr.length !== 3) document.write("Nevaliden vlez!");
+        else {
+            var x = parseInt(arr[0])
+            var y = parseInt(arr[1])
+            var z = parseInt(arr[2])
+            if(isNaN(x) || isNaN(y) || isNaN(z)) {
+                document.write("Vnese nevalidna vrednost!")
+            } else {
+                var p = x * y * z;
+                if(p < 0) document.write("Znakot e  -");
+                else document.write("Znakot e  +");
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

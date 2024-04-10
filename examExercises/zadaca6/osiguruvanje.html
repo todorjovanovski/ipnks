@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Осигурување на возила</title>
+
+    <style>
+        div {
+            margin: 10px;
+        }
+        label {
+            width: 180px;
+            display: inline-block;
+        }
+        .red{
+            background: indianred;
+        }
+        .green {
+            background: #79f579;
+        }
+        section {
+            display: inline-block;
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+            width: 185px;
+        }
+    </style>
+
+    <script>
+        let vkupnoSmetki = 0;
+        function generate() {
+            let ime = document.getElementById("name")
+            let prezime = document.getElementById("surname")
+            let registracija = document.getElementById("registration")
+            let godini = document.getElementById("age")
+            let soobrakjajka = ""
+            let cena = 3000
+            if(document.getElementById("yes").checked) {
+                soobrakjajka = "Има"
+            }
+            else if(document.getElementById("no").checked) {
+                soobrakjajka = "Нема"
+            }
+
+            if(ime.value === "" || prezime.value === "" || registracija.value === ""
+                || godini.value === "" || soobrakjajka === "") {
+                alert("Мора да ги пополните сите полиња!")
+                return
+            }
+            let bgColor = "";
+            if(godini.value > 30) {
+                bgColor = "red"
+            } else {
+                bgColor = "green"
+            }
+
+            let r = registracija.value;
+            if(r.length !== 10) {
+                alert("Невалидна регистрација!")
+                return;
+            } else {
+                r = r.split('-');
+                if(!(/[a-zA-Z]/).test(r[0].charAt(0)) ||  !(/[a-zA-Z]/).test(r[0].charAt(1)) ||
+                    isNaN(r[1]) || !(/[a-zA-Z]/).test(r[2].charAt(0)) ||  !(/[a-zA-Z]/).test(r[2].charAt(1))) {
+                    alert("Невалидна регистрација!")
+                    return;
+                }
+                if(r[1].charAt(0) === r[1].charAt(1) && r[1].charAt(0) === r[1].charAt(2) && r[1].charAt(0) === r[1].charAt(3))
+                    cena = 4000;
+            }
+
+            if(soobrakjajka === "Има") {
+                cena += 500;
+            }
+            document.getElementById("total").innerHTML = "Вкупно сметки за плаќање: " + ++vkupnoSmetki;
+
+            let frame = document.getElementById("bills")
+            frame.innerHTML +=
+                "<section class=" + bgColor + ">"
+                + "<p>" + ime.value + " " + prezime.value + "</p>"
+                + "<p>" + registracija.value + "</p>"
+                + "<p>" + "Сообраќајка: " + soobrakjajka + "</p>"
+                + "<p>" + "Старост на возилото: " + godini.value + "</p>"
+                + "<p>" + "За плаќање: " + cena + "</p>"
+                + "<p>" + "<input type='button' id='plati' onclick='pay(this, this.nextElementSibling)' value='Плати'>" + " " +
+                "<input type='button' id='izbrisi' onclick='del(this)' value='Избриши'>" + "</p>" +
+                "</section>"
+
+
+            document.getElementById("name").value = ""
+            document.getElementById("surname").value = ""
+            document.getElementById("registration").value = ""
+            document.getElementById("age").value = ""
+
+        }
+        function pay(plati, brisi) {
+            plati.disabled = true;
+            brisi.disabled = true;
+        }
+        function del(ref) {
+            document.getElementById("total").innerHTML = "Вкупно сметки за плаќање: " + --vkupnoSmetki;
+            ref = ref.parentNode.parentNode
+            ref.remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>Осигурување на возила</h1>
+    <div><label for="name">Име</label><input type="text" id="name"></div>
+    <div><label for="surname">Презиме</label><input type="text" id="surname"></div>
+    <div><label for="registration">Регистарска таблица</label><input type="text" id="registration"></div>
+    <div><label for="age">Години на старост</label><input type="number" id="age"></div>
+    <div><label>Сообраќајна незгода</label>
+        <input type="radio" name="acc" id="yes">Да
+        <input type="radio" name="acc" id="no">Не
+    </div>
+    <div><input type="button" onclick="generate()" value="Генерирај сметка"></div>
+
+    <div>
+        <h3>Сметки</h3>
+        <p id="total">Вкупно сметки за плаќање: 0</p>
+        <div id="bills">
+
+        </div>
+    </div>
+</body>
+</html>

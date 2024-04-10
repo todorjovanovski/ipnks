@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>About Me</title>
+  <script>
+    window.onload = function () {
+      let b = document.getElementsByTagName("body")[0]
+      b.style.fontFamily = "Arial"
+
+      document.getElementById("name").innerHTML = "Тодор"
+      document.getElementById("index").innerHTML = "213133"
+      document.getElementById("hometown").innerHTML = "Скопје"
+
+      let arr = document.getElementsByTagName("li")
+      for(let i=0; i<arr.length; i++) {
+        arr[i].style.background = "red"
+      }
+    }
+
+  </script>
+</head>
+<body>
+  <h1>About Me</h1>
+
+  <ul>
+    <li>Name: <span id="name"></span>
+    <li>Index: <span id="index"></span>
+    <li>Hometown: <span id="hometown"></span>
+  </ul>
+</body>
+</html>

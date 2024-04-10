@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Style</title>
+    <script>
+        function textColor(style) {
+            let p = document.getElementById("text")
+            p.style.color = style
+        }
+        function widthSize(style) {
+            let p = document.getElementById("text")
+            p.style.width = style
+        }
+        function colorBg(style) {
+            let p = document.getElementById("text")
+            p.style.backgroundColor = style
+        }
+    </script>
+</head>
+<body style="width: 600px">
+    <p id="text">
+        Преку javascript код да се имплементира опција за менување на стилот на параграфите во една
+        страна. Кои стилови ќе може да се менуваат и со кои опции е дадено во еден json стринг. За секој
+        од стиловите треба да се направи по еден select кој како опции ќе ги има опциите за дадениот
+        стил. На почетокот параграфите немаат никаков стил и за дадениот json стринг треба да изгледа
+        како на слика 1. Со менување на изборот на select се менуваа и соодветниот стил (слика 2, слика
+        3).
+    </p>
+    <label for="color">Color</label>
+    <select onchange="textColor(this.value)" id="color">
+        <option>red</option>
+        <option>green</option>
+        <option>blue</option>
+        <option>yellow</option>
+        <option>cyan</option>
+    </select>
+    <label for="width"> Width</label>
+    <select onchange="widthSize(this.value)" id="width">
+        <option>100px</option>
+        <option>200px</option>
+        <option>300px</option>
+        <option>400px</option>
+        <option>500px</option>
+    </select>
+    <label for="bgColor"> Background Color</label>
+    <select onchange="colorBg(this.value)" id="bgColor">
+        <option>grey</option>
+        <option>pink</option>
+        <option>purple</option>
+        <option>orange</option>
+        <option>lightblue</option>
+    </select>
+</body>
+</html>

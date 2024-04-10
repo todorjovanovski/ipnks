@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 1</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 45px;
+        }
+        div p:first-child {
+            margin-left: 7px;
+        }
+    </style>
+    <script>
+        function calculate() {
+            let op
+            let inputs = document.getElementsByTagName("input")
+            let a = parseFloat(document.getElementById("a").value)
+            let b = parseFloat(document.getElementById("b").value)
+            let result = document.getElementById("rezultat")
+
+            for(let i=0; i<inputs.length; i++) {
+                if(inputs[i].checked) {
+                    op = inputs[i].id
+                    break;
+                }
+            }
+            if(op === "plus") result.innerHTML = (a + b)
+            else if(op === "minus") result.innerHTML = (a - b)
+            else if(op === "mnoz") result.innerHTML = (a * b)
+            else if(op === "del") result.innerHTML = (a / b)
+            else if(op === "sin") result.innerHTML = (Math.sin(a))
+            else if(op === "cos") result.innerHTML = (Math.cos(a))
+            else if(op === "tg") result.innerHTML = (Math.tan(a))
+            else if(op === "cel") result.innerHTML = (Math.ceil(a))
+            else if(op === "stepen") result.innerHTML = (Math.pow(a, b))
+            else if(op === "koren") result.innerHTML = (Math.sqrt(a))
+        }
+    </script>
+</head>
+<body>
+<h1>Калкулатор</h1>
+    <div style="text-align:left; float:left">
+        <p>а <input id="a" style="width:40px"/>
+            b <input id="b" style="width:40px"/></p>
+        <p>
+            <input id="plus" type="radio" name="oper" checked><label for="plus">a+b</label>
+            <input id="minus" type="radio" name="oper"><label for="minus">a-b</label>
+            <input id="mnoz" type="radio" name="oper" ><label for="mnoz">a*b</label>
+            <input id="del" type="radio" name="oper" ><label for="del">a/b</label>
+            <br>
+            <input id="sin" type="radio" name="oper"><label for="sin">sin(a)</label>
+            <input id="cos" type="radio" name="oper"><label for="cos">cos(a)</label>
+            <input id="tg" type="radio" name="oper"><label for="tg">tg(a)</label>
+            <br>
+            <input id="cel" type="radio" name="oper"><label for="cel">[a]</label>
+            <input id="stepen" type="radio" name="oper"><label for="stepen">a<sup>b</sup></label>
+            <input id="koren" type="radio" name="oper"><label for="koren">&radic;<span style="text-decoration:overline">a</span></label>
+        </p>
+        <button onclick="calculate()">Пресметај</button>
+        <p id="rezultat"></p>
+    </div>
+<br/>
+</body>
+</html>

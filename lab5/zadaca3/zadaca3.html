@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 3</title>
+    <style>
+        body {
+            font-size: 30px;
+            font-family: Verdana, sans-serif;
+        }
+
+        .row {
+            display: inline-block;
+            float: left;
+            clear: both;
+        }
+
+        .row div {
+            border: 2px solid #737373;
+            display: inline-block;
+            margin: 10px;
+            width: 190px;
+            height: 190px;
+            line-height: 190px;
+            text-align: center;
+            vertical-align: center;
+            padding: 2px;
+        }
+
+        img {
+            width: 190px;
+            height: 190px;
+        }
+
+        .base {
+            background: linear-gradient(#1E5799, #5da5e3);
+            color: whitesmoke;
+        }
+
+        .checked {
+            background: linear-gradient(#888888, #525252);
+            pointer-events: none;
+            color: whitesmoke;
+        }
+
+        .clicked {
+            pointer-events: none;
+        }
+
+        .hover {
+            cursor: pointer;
+            background: linear-gradient(#7cd70b, mediumseagreen);
+            color: dodgerblue;
+        }
+
+        .row div span:last-child {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        let clickedArr = []
+        let size = 0
+        window.onload = function () {
+            const pics = document.getElementsByClassName("img")
+            console.log(pics.length)
+            for(const pic of pics) {
+                pic.style.display = "none"
+            }
+        }
+        function reset() {
+            location.reload()
+        }
+        function clicked(frame) {
+            frame.firstChild.style.display = "none"
+            frame.lastChild.style.display = "inline-block"
+            clickedArr[size++] = frame
+            clickedArr[size-1].classList.add("clicked")
+            if(size === 2) {
+                if(clickedArr[0].lastChild.alt === clickedArr[1].lastChild.alt
+                    && clickedArr[0].firstChild.alt !== clickedArr[1].firstChild.alt) {
+                    clickedArr[0].classList.add("checked")
+                    clickedArr[1].classList.add("checked")
+                }
+            }
+            if(size === 3) {
+                if(clickedArr[0].lastChild.alt !== clickedArr[1].lastChild.alt){
+                    clickedArr[0].lastChild.style.display = "none"
+                    clickedArr[0].firstChild.style.display = "inline-block"
+                    clickedArr[1].lastChild.style.display = "none"
+                    clickedArr[1].firstChild.style.display = "inline-block"
+                    clickedArr[0].classList.remove("clicked")
+                    clickedArr[1].classList.remove("clicked")
+                }
+                size = 0
+                clickedArr[size++] = frame
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="game">
+    <div class="row">
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="1"><img class="img" src="courageDog.png" alt="1"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="2"><img class="img" src="edd.png" alt="2"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="1"><img class="img" src="courageDog.png" alt="1"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="3"><img class="img" src="pwpf.png" alt="3"></div>
+    </div>
+    <div class="row">
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="6"><img class="img" src="gumball.png" alt="6"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="7"><img class="img" src="finn.png" alt="7"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="8"><img class="img" src="regularShow.png" alt="8"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="2"><img class="img" src="edd.png" alt="2"></div>
+    </div>
+    <div class="row">
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="8"><img class="img" src="regularShow.png" alt="8"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="5"><img class="img" src="dexter.png" alt="5"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="7"><img class="img" src="finn.png" alt="7"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="6"><img class="img" src="gumball.png" alt="6"></div>
+    </div>
+    <div class="row">
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="5"><img class="img" src="dexter.png" alt="5"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="4"><img class="img" src="tomjerry.png" alt="4"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="4"><img class="img" src="tomjerry.png" alt="4"></div>
+        <div onclick="clicked(this)"><img class="first" src="bg.png" alt="3"><img class="img" src="pwpf.png" alt="3"></div>
+    </div>
+    <button onclick="reset()">RESET</button>
+</div>
+</body>
+</html>

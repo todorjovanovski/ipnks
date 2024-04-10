@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача 2</title>
+    <style>
+        div{
+            padding: 15px;
+        }
+    </style>
+    <script>
+        let correct = false
+        let counter = 0
+        let random = Math.random() * 10000
+        random = parseInt(random).toString()
+        while (random.length !== 4) {
+            random = Math.random() * 10000
+            random = parseInt(random).toString()
+        }
+        function guess() {
+            random = random.toString()
+            console.log(random)
+            counter++
+            let guess = document.getElementById("guess").value
+            if(guess.length !== 4) {
+                alert("Enter a four digit number!")
+            }
+            else {
+                if(correct || counter === 11) {
+                    startNew()
+                    correct = false
+                }
+                let tries = document.getElementById("tries")
+                let output = document.getElementById("prikaz")
+                tries.innerHTML = "Обиди " + counter
+                let contains = 0
+                let rightSpot = 0
+                let arr = []
+                for(let i=0; i<4; i++) {
+                    if(guess.charAt(i) === random.charAt(i)) {
+                        rightSpot ++
+                        arr[i] = true
+                    }
+                }
+                for(let i=0; i<4; i++) {
+                    for(let j=0; j<4; j++) {
+                        if(guess.charAt(i) === random.charAt(j) && arr[j] !== true && arr[i] !== true) {
+                            contains ++
+                            arr[j] = true
+                            break
+                        }
+                    }
+                }
+                output.innerHTML += "<p>Има " + contains + ", на точно место "+ rightSpot + " " + guess + "</p>"
+                if(rightSpot === 4) {
+                    output.innerHTML += "ПОГОДОК!!!"
+                    correct = true
+                }
+                if(counter === 10)
+                    output.innerHTML += "<p>Не успеавте да погодите од 10 обиди. Бројот е "+ random + ".</p>"
+
+            }
+        }
+        function startNew() {
+            let tries = document.getElementById("tries")
+            let output = document.getElementById("prikaz")
+            counter = 0
+            random = Math.random() * 10000
+            random = parseInt(random).toString()
+            while (random.length !== 4) {
+                random = Math.random() * 10000
+                random = parseInt(random).toString()
+            }
+            output.innerHTML = ""
+            tries.innerHTML = "Обиди 0"
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align:right; float:left">
+        <label for="guess" id="tries">Обиди 0</label>
+        <p>Погодок: <input id="guess" style="width:150px"/></p>
+        <button onclick="guess()">Погоди</button>
+        <button onclick="startNew()">Од почеток</button>
+    </div>
+<br/>
+<div id="prikaz" style="clear: both">
+</div>
+</body>
+</html>

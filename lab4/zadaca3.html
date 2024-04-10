@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Background</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 40px;
+            text-align: right;
+            padding: 5px;
+        }
+        #form div {
+            margin-bottom: 5px;
+            width: 280px;
+            text-align: right;
+        }
+        #value {
+            width: 180px;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script>
+        function change() {
+
+            let colorButton = document.getElementById("color").checked
+            let imageButton = document.getElementById("image").checked
+            let backgroundValue = document.getElementById("value").value
+            let body = document.getElementsByTagName("body")[0]
+            body.style.background = "white"
+
+            if(colorButton) {
+                body.style.background = backgroundValue;
+            }
+            else if(imageButton) {
+                body.style.backgroundImage = "url('" + backgroundValue + "')"
+                //body.style.backgroundRepeat = "no-repeat"
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Промена на позадина</h1>
+    <div id="form">
+        <div>
+            <label for="color">Color</label><input type="radio" name="bg" id="color">
+            <label for="image">Image</label><input type="radio" name="bg" id="image">
+        </div>
+        <div>
+            <label for="value">Value:</label><input type="text" id="value">
+        </div>
+        <div>
+            <button id="change" onclick="change()">Промени</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+            padding: 5px;
+        }
+        #form div {
+            margin-bottom: 5px;
+        }
+        button {
+            margin-left: 224px;
+        }
+        input {
+            width: 180px;
+        }
+        select {
+            background: #e1e1e1;
+            width: 186px;
+            margin-left: -3px;
+        }
+        table {
+            margin: 15px;
+        }
+        table, td, th {
+            border: 1px solid grey;
+            border-collapse: collapse;
+        }
+        td, th {
+            width: 90px;
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function addRow() {
+            let name = document.getElementById("name")
+            let surname = document.getElementById("surname")
+            let index = document.getElementById("index")
+            let subject = document.getElementById("subject")
+            let grade = document.getElementById("grade")
+
+            let tableBody = document.getElementById("tableBody")
+            tableBody.innerHTML +=
+                "<tr>" +
+                "<td>" + name.value + "</td>" +
+                "<td>" + surname.value + "</td>" +
+                "<td>" + index.value + "</td>" +
+                "<td>" + subject.value + "</td>" +
+                "<td>" + grade.value + "</td>" +
+                "</tr>"
+
+            name.value = ""
+            surname.value = ""
+            index.value = ""
+            subject.value = ""
+            grade.value = "5 (пет)"
+        }
+
+    </script>
+</head>
+<body>
+    <div id="form">
+        <div><label for="name">Име:</label><input type="text" id="name"></div>
+        <div><label for="surname">Презиме:</label><input type="text" id="surname"></div>
+        <div><label for="index">Индекс:</label><input type="text" id="index"></div>
+        <div><label for="subject">Предмет:</label><input type="text" id="subject"></div>
+        <div><label for="grade">Оцена:</label>
+            <select id="grade">
+                <option>5 (пет)</option>
+                <option>6 (шест)</option>
+                <option>7 (седум)</option>
+                <option>8 (осум)</option>
+                <option>9 (девет)</option>
+                <option>10 (десет)</option>
+            </select>
+        </div>
+        <div><button id="add" onclick="addRow()">Внеси</button></div>
+    </div>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Име</th><th>Презиме</th><th>Индекс</th><th>Предмет</th><th>Оцена</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+</body>
+</html>

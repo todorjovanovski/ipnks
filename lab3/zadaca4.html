@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <script>
+        class Book{
+            constructor(title, author, alreadyRead) {
+                this.title = title
+                this.author = author
+                this.alreadyRead = alreadyRead
+            }
+
+            status() {
+                if(this.alreadyRead) {
+                    return "You already read " + '"' + this.title + '"' + " by " + this.author;
+                } else
+                    return "You still need to read " + '"' + this.title + '"' + " by " + this.author;
+            }
+        }
+        let book1 = new Book("The Hobbit", "J.R.R. Tolkien", false)
+        let book2 = new Book("Crime and Punishment", "Fyodor Dostoevsky", true)
+        let book3 = new Book("The Stranger", "Albert Camus", true)
+        let books = [book1, book2, book3]
+        for(let i=0; i<books.length; i++) {
+            console.log(books[i].status())
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

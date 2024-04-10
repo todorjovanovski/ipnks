@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colored Blocks</title>
+    <style>
+        label {
+            display: block;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: 1px solid white;
+        }
+        section {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function draw() {
+            let delimiter = document.getElementById("delimiter").value
+            let colors = document.getElementById("color").value.split(delimiter)
+            let frame = document.getElementById("frame")
+            for(let i=0; i<colors.length; i++) {
+                colors[i] = colors[i].trim()
+                let newDiv = "<div style='background:" + colors[i] +"' onclick='deleteDiv(this)'></div>"
+                frame.innerHTML += newDiv
+            }
+        }
+        function deleteDiv(block) {
+            block.parentNode.removeChild(block)
+            let newColors = []
+            let blocks = document.getElementById("frame").children
+            let delimiter = document.getElementById("delimiter").value
+            for(let i=0; i<blocks.length; i++) {
+                newColors.push(String(blocks[i].style.backgroundColor))
+            }
+            document.getElementById("color").value = newColors.join(delimiter + " ")
+        }
+    </script>
+</head>
+<body>
+    <label for="color">Colors</label><input type="text" id="color" value="red, green, blue, cyan">
+    <label for="delimiter">Delimiter</label><input type="text" id="delimiter" value=",">
+    <button onclick="draw()">Draw</button>
+    <section id="frame"></section>
+</body>
+</html>

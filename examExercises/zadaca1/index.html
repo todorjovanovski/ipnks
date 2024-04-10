@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snowflakes</title>
+    <style>
+        img {
+            width: 160px;
+            position: absolute;
+            top: -200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let images = document.getElementsByTagName("img")
+            for(let i=0; i<images.length; i++) {
+                images[i].style.left = Math.random()*window.innerWidth*0.9 + "px"
+                setInterval(animation, Math.random()*15, images[i])
+            }
+        }
+        function animation(image) {
+            let position = Number(image.style.top.substring(0, image.style.top.length-2))
+            image.style.top = ++position + "px"
+            if(position > window.innerHeight) {
+                image.style.top = "-200px"
+                image.style.left = Math.random()*window.innerWidth*0.9 + "px"
+            }
+        }
+    </script>
+</head>
+<body>
+    <img alt="snowflake" src="s1.png">
+    <img alt="snowflake" src="s2.png">
+    <img alt="snowflake" src="s3.png">
+    <img alt="snowflake" src="s4.png">
+    <img alt="snowflake" src="s5.png">
+    <img alt="snowflake" src="s6.png">
+    <img alt="snowflake" src="s3.png">
+    <img alt="snowflake" src="s4.png">
+    <img alt="snowflake" src="s6.png">
+    <img alt="snowflake" src="s2.png">
+    <img alt="snowflake" src="s5.png">
+
+</body>
+</html>

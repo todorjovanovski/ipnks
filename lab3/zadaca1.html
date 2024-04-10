@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Duplicates</title>
+    <script>
+        function removeDuplicates(array) {
+            let newArray = [];
+            for(let i=0; i<array.length; i++) {
+                if(!newArray.includes(array[i])) {
+                    newArray.push(array[i])
+                }
+            }
+            return newArray;
+        }
+        let array = [2, 2, 2, 3, 3, 0, 5]
+        console.log(removeDuplicates(array))
+    </script>
+</head>
+<body>
+</body>
+</html>

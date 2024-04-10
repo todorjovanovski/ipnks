@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Picture</title>
+    <script>
+        window.onload = function () {
+            let asd = document.getElementsByTagName("img")
+            for(let i=0; i<asd.length; i++) {
+                asd[i].style.display = "none"
+            }
+        }
+        function changePicture() {
+            let arr = document.getElementsByTagName("img")
+            for(let i=0; i<arr.length; i++) {
+                arr[i].style.display = "none"
+            }
+
+            let i = Math.floor(Math.random() * 3) + 1;
+            document.getElementById(i).style.display = "block"
+        }
+    </script>
+</head>
+<body>
+<img id="1" src="bridge.jpg" alt="Bridge">
+<img id="2" src="city.jpg" alt="City">
+<img id="3" src="forest.jpg" alt="Forest">
+<div style="margin: 10px 10px 10px 0">
+    <input type="button" onclick="changePicture()" value="Click Me" id="clickMe">
+</div>
+</body>
+</html>

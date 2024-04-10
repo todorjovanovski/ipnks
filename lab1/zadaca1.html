@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome</title>
+    <script type="text/javascript">
+        var x = prompt("Vnesi tricifren broj:");
+        x = parseInt(x);
+        if(!isNaN(x)) {
+            if(x < 100 || x > 999) document.write("Ne moze da se proveri vneseniot broj!")
+            else {
+                if(Math.floor(x/100) === Math.floor(x%10)) {
+                    document.write("Vneseniot broj e palindrom.")
+                } else {
+                    document.write("Vneseniot broj ne e palindrom.")
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
